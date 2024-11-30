@@ -18,13 +18,18 @@
       
       overlays.default = [
         (final: prev: {
-          python3 = prev.python3.override {
-            overrides = self: super: {
-              simple_python_package = super.python3Packages.callPackage ./pkgs/simple_python_package{ };
-            };
-          };
+          pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+            (
+              python-final: python-prev: {
+                foo = python-prev.foo.overridePythonAttrs (oldAttrs: {
+                  # ...
+                });
+              }
+            )
+          ];
         })
       ];
+
       packages.${system} = {
         simple_python_package = pkgs.python3Packages.callPackage ./pkgs/simple_python_package { };
       };
