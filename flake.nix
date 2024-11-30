@@ -12,10 +12,19 @@
       };
     in
     {
-      overlays.default = final: prev: {
-        simple_python_package = prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
-      };
+     # overlays.default = final: prev: {
+     #   simple_python_package = prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
+     # };
       
+      overlays.default = [
+        (final: prev: {
+          python3 = prev.python3.override {
+            overrides = self: super: {
+              simple_python_package = super.python3Packages.callPackage ./pkgs/simple_python_package{ };
+            };
+          };
+        })
+      ];
       packages.${system} = {
         simple_python_package = pkgs.python3Packages.callPackage ./pkgs/simple_python_package { };
       };
