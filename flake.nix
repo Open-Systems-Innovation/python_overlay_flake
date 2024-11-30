@@ -13,7 +13,7 @@
     in
     {
       overlay.default = final: prev: {
-        simple_python_package = prev.callPackage ./pkgs/simple_python_package{ };
+        simple_python_package = prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
       };
       
       packages.${system} = {
