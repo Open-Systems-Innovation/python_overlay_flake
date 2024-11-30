@@ -13,7 +13,7 @@
     in
     {
       overlay.default = final: prev: {
-        hi-there-world = prev.callPackage ./pkgs/hi-there-world { };
+        simple_python_package = prev.callPackage ./pkgs/hi-there-world { };
       };
       
       packages.${system} = {
