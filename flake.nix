@@ -21,11 +21,8 @@
           pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
             (
               python-final: python-prev: {
-                foo = python-prev.foo.overridePythonAttrs (oldAttrs: {
-                  # ...
-                });
-              }
-            )
+                simple_python_package = prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
+                })
           ];
         })
       ];
