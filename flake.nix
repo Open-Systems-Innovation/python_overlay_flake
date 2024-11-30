@@ -21,7 +21,7 @@
           pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
             (
               python-final: python-prev: {
-                simple_python_package = prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
+                simple_python_package = python-prev.python3Packages.callPackage ./pkgs/simple_python_package{ };
                 })
           ];
         })
